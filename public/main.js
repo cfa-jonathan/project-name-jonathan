@@ -2,9 +2,9 @@ async function apiSearch(searchTerm) {
   const netlifyFunctionURL = "/.netlify/functions/search";
   const options = {
     method: 'POST',
-    body: {
+    body: JSON.stringify({
       searchTerm: searchTerm
-    }
+    })
   };
 
   const response = await fetch(netlifyFunctionURL, options);
