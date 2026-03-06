@@ -1,16 +1,12 @@
 export default async function search(req) {
   try {
-    const reqData = await req.json();
-    const searchTerm = reqData.searchTerm;
+    const reqData = JSON.parse(req.body);
+    // const searchTerm = ;
     console.log(reqData);
 
-    const endpointURL = `https://api.thedogapi.com/v1/breeds/search?q=${searchTerm}`;
+    const endpointURL = `http://ws.audioscrobbler.com/2.0/?method=tag.gettoptracks&tag=${tag}&api_key=${APIKey}&format=json`;
     const options = {
-      method: "GET",
-      headers: {
-        Authentication: "secret",
-        "x-api-key": Netlify.env.get("SECRET_API_KEY"),
-      },
+      method: "GET"
     };
 
     const response = await fetch(endpointURL, options);
