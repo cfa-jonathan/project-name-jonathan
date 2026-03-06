@@ -2,6 +2,7 @@ export default async function search(req) {
   try {
     const reqData = req.body;
     const searchTerm = reqData.searchTerm;
+    console.log(reqData);
 
     const endpointURL = `https://api.thedogapi.com/v1/breeds/search?q=${searchTerm}`;
     const options = {
