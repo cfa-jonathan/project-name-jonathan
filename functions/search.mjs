@@ -1,6 +1,9 @@
-export default async function search() {
+export default async function search(req) {
   try {
-    const endpointURL = "https://api.thedogapi.com/v1/breeds";
+    const reqData = await req.body.json();
+    const searchTerm = reqData.searchTerm;
+
+    const endpointURL = `https://api.thedogapi.com/v1/breeds/search?q=${searchTerm}`;
     const options = {
       method: "GET",
       headers: {
