@@ -1,4 +1,5 @@
 export default async function search(req) {
+  console.log("RUNNING");
   try {
     const reqData = JSON.parse(req.body);
     console.log(reqData);
