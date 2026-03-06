@@ -1,6 +1,6 @@
 export default async function search(req) {
   try {
-    const reqData = await req.body.json();
+    const reqData = req.body;
     const searchTerm = reqData.searchTerm;
 
     const endpointURL = `https://api.thedogapi.com/v1/breeds/search?q=${searchTerm}`;
@@ -8,34 +8,30 @@ export default async function search(req) {
       method: "GET",
       headers: {
         Authentication: "secret",
-        "x-api-key": Netlify.env.get("SECRET_API_KEY")
-      }
+        "x-api-key": Netlify.env.get("SECRET_API_KEY"),
+      },
     };
 
     const response = await fetch(endpointURL, options);
     const data = await response.json();
 
-    return new Response(
-      JSON.stringify(data),
-      {
-        status: 200,
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-    );
-  }
-  catch (error) {
+    return new Response(JSON.stringify(data), {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
     return new Response(
       JSON.stringify({
-        error: "Could not complete fetch call"
+        error: "Could not complete fetch call",
       }),
       {
         status: 500,
         headers: {
-          'Content-Type': 'application/json'
-        }
-      }
+          "Content-Type": "application/json",
+        },
+      },
     );
   }
 }
