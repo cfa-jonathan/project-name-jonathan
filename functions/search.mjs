@@ -1,6 +1,6 @@
 export default async function search(req) {
   try {
-    const reqData = req.body;
+    const reqData = await req.json();
     const searchTerm = reqData.searchTerm;
     console.log(reqData);
 
