@@ -1,7 +1,7 @@
 async function apiSearch(searchTerm) {
   const netlifyFunctionURL = "/.netlify/functions/search";
   const options = {
-    method: 'GET',
+    method: 'POST',
     body: {
       searchTerm: searchTerm
     }
@@ -12,3 +12,4 @@ async function apiSearch(searchTerm) {
 
   console.log(data);
 }
+apiSearch("terrier");
